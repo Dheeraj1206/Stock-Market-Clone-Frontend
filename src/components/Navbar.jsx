@@ -20,7 +20,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav className="flex justify-between items-center px-4 sm:px-8 h-[5rem] max-w-[80rem] w-full mx-auto bg-white text-black">
+		<nav className="flex justify-between items-center px-4 sm:px-8 h-[5rem] max-w-[80rem] w-full mx-auto bg-white text-black fixed top-0 left-0 right-0 z-50">
 			{/* Left Section: Logo + Links */}
 			<div class="flex items-center space-x-[48px] sm:space-x-4 justify-start">
 				<a href="/" data-discover="true">
