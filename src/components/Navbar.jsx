@@ -20,26 +20,26 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav className="flex justify-between items-center px-4 sm:px-8 h-[5rem] max-w-[80rem] w-full mx-auto bg-white text-black fixed top-0 left-0 right-0 z-50">
+		<nav className="flex justify-between items-center px-4 sm:px-8 h-[5rem] max-w-[80rem] w-full mx-auto text-black">
 			{/* Left Section: Logo + Links */}
-			<div class="flex items-center space-x-[48px] sm:space-x-4 justify-start">
+			<div className="flex items-center space-x-[48px] sm:space-x-4 justify-start">
 				<a href="/" data-discover="true">
 					<img
 						alt="Groww Logo"
-						class="h-[50px] w-[150px]"
+						className="h-[50px] w-[150px]"
 						src="/src/assets/Icons/groww-logo-light.svg"
 					/>
 				</a>
-				<div class="flex space-x-4">
+				<div className="flex space-x-4">
 					<a
-						class="text-lg font-medium hover:text-blue-600 transition-colors"
+						className="text-lg font-medium hover:text-blue-600 transition-colors"
 						href="/"
 						data-discover="true"
 					>
 						Explore
 					</a>
 					<a
-						class="text-lg font-medium hover:text-blue-600 transition-colors"
+						className="text-lg font-medium hover:text-blue-600 transition-colors"
 						href="/investment"
 						data-discover="true"
 					>
