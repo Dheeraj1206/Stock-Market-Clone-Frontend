@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import LoginPage from '../pages/LoginPage';
-import HomePage from '../pages/HomePage';
+import { Navigate } from 'react-router-dom';
 
-const PrivateRoute = () => {
+const PrivateRoute = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
 
     if (!token) {
       setAuthenticated(false);
+      setLoading(false);
     } else {
-      // Optional: validate token with backend
-      fetch('http://localhost:5000/api/auth/validate', {  // Corrected the URL here
-        headers: { Authorization: `Bearer ${token}` }
+      fetch('http://localhost:5000/api/auth/validate', {
+        headers: { Authorization: `Bearer ${token}` },
       })
-        .then(res => {
+        .then((res) => {
           if (res.ok) {
             setAuthenticated(true);
           } else {
@@ -24,13 +24,22 @@ const PrivateRoute = () => {
           }
         })
         .catch(() => {
+          localStorage.removeItem('token');
           setAuthenticated(false);
-        });
+        })
+        .finally(() => setLoading(false));
     }
   }, []);
 
-  if (!authenticated) return <LoginPage />;
-  return <HomePage />;
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-gray-600">
+        <p>Checking authentication...</p>
+      </div>
+    );
+  }
+
+  return authenticated ? children : <Navigate to="/login" replace />;
 };
 
 export default PrivateRoute;
